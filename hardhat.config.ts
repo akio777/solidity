@@ -1,11 +1,8 @@
 import { task, HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
 import 'hardhat-deploy';
 import 'hardhat-gas-reporter';
-import 'hardhat-deploy-ethers';
 import 'hardhat-contract-sizer';
 
-import 'solidity-coverage';
 import '@typechain/hardhat';
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-etherscan';
@@ -35,8 +32,8 @@ const optimizedForDeployment = (runs = 1000) => ({
 
 
 
+
 const config: HardhatUserConfig = {
-  // solidity: "0.8.15",
   solidity: {
     compilers: [
       { version: '0.8.15' }
@@ -48,7 +45,7 @@ const config: HardhatUserConfig = {
       },
     },
     overrides: {
-      'contracts/src/...': optimizedForDeployment(),
+      'contracts/src/AssetGatewayTemplate.sol': optimizedForDeployment(),
     }
   },
   networks: {
@@ -60,7 +57,21 @@ const config: HardhatUserConfig = {
       gas: 33_333_333,
       chainId: 1337
     }
-  }
+  },
+  contractSizer: {
+    alphaSort: true,
+    runOnCompile: true,
+    disambiguatePaths: false,
+  },
+
+  mocha: {
+    timeout: 0,
+  },
+
+  typechain: {
+    outDir: 'types',
+    target: 'ethers-v5',
+  },
 };
 
 

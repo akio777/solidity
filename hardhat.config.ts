@@ -45,7 +45,7 @@ const config: HardhatUserConfig = {
       },
     },
     overrides: {
-      'contracts/src/AssetGatewayTemplate.sol': optimizedForDeployment(),
+      'contracts/src/template/AssetGatewayTemplate.sol': optimizedForDeployment(),
     }
   },
   networks: {

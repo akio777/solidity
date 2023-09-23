@@ -13,6 +13,18 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
+      name: "Ownable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Ownable__factory>;
+    getContractFactory(
+      name: "ERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20__factory>;
+    getContractFactory(
+      name: "IERC20Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Metadata__factory>;
+    getContractFactory(
       name: "IERC20Permit",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20Permit__factory>;
@@ -29,6 +41,18 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IWrapNative__factory>;
     getContractFactory(
+      name: "ERC20Mintable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20Mintable__factory>;
+    getContractFactory(
+      name: "IERC20Mintable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Mintable__factory>;
+    getContractFactory(
+      name: "WBNB",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WBNB__factory>;
+    getContractFactory(
       name: "AssetGatewayTemplate",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.AssetGatewayTemplate__factory>;
@@ -36,7 +60,26 @@ declare module "hardhat/types/runtime" {
       name: "Lock",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Lock__factory>;
+    getContractFactory(
+      name: "AssetGatewayTemplate",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AssetGatewayTemplate__factory>;
 
+    getContractAt(
+      name: "Ownable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Ownable>;
+    getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "IERC20Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Metadata>;
     getContractAt(
       name: "IERC20Permit",
       address: string,
@@ -58,6 +101,21 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IWrapNative>;
     getContractAt(
+      name: "ERC20Mintable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20Mintable>;
+    getContractAt(
+      name: "IERC20Mintable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Mintable>;
+    getContractAt(
+      name: "WBNB",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WBNB>;
+    getContractAt(
       name: "AssetGatewayTemplate",
       address: string,
       signer?: ethers.Signer
@@ -67,6 +125,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Lock>;
+    getContractAt(
+      name: "AssetGatewayTemplate",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AssetGatewayTemplate>;
 
     // default types
     getContractFactory(

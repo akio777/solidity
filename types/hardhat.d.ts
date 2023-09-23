@@ -53,10 +53,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WBNB__factory>;
     getContractFactory(
-      name: "AssetGatewayTemplate",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.AssetGatewayTemplate__factory>;
-    getContractFactory(
       name: "Lock",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Lock__factory>;
@@ -115,11 +111,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.WBNB>;
-    getContractAt(
-      name: "AssetGatewayTemplate",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.AssetGatewayTemplate>;
     getContractAt(
       name: "Lock",
       address: string,

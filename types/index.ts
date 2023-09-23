@@ -11,8 +11,8 @@ export type { IWrapNative } from "./IWrapNative";
 export type { ERC20Mintable } from "./ERC20Mintable";
 export type { IERC20Mintable } from "./IERC20Mintable";
 export type { WBNB } from "./WBNB";
-export type { AssetGatewayTemplate } from "./AssetGatewayTemplate";
 export type { Lock } from "./Lock";
+export type { AssetGatewayTemplate } from "./AssetGatewayTemplate";
 
 export { Ownable__factory } from "./factories/Ownable__factory";
 export { ERC20__factory } from "./factories/ERC20__factory";
@@ -24,5 +24,5 @@ export { IWrapNative__factory } from "./factories/IWrapNative__factory";
 export { ERC20Mintable__factory } from "./factories/ERC20Mintable__factory";
 export { IERC20Mintable__factory } from "./factories/IERC20Mintable__factory";
 export { WBNB__factory } from "./factories/WBNB__factory";
-export { AssetGatewayTemplate__factory } from "./factories/AssetGatewayTemplate__factory";
 export { Lock__factory } from "./factories/Lock__factory";
+export { AssetGatewayTemplate__factory } from "./factories/AssetGatewayTemplate__factory";

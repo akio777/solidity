@@ -54,7 +54,8 @@ const config: HardhatUserConfig = {
         mnemonic: process.env.MNEMONIC
       },
       allowUnlimitedContractSize: true,
-      gas: 33_333_333,
+      blockGasLimit: 1_000_000_000,
+      gas: 25_000_000,
       chainId: 1337
     }
   },
@@ -62,6 +63,10 @@ const config: HardhatUserConfig = {
     alphaSort: true,
     runOnCompile: true,
     disambiguatePaths: false,
+  },
+
+  gasReporter: {
+    enabled: false
   },
 
   mocha: {

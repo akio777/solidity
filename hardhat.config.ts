@@ -59,7 +59,36 @@ const config: HardhatUserConfig = {
       blockGasLimit: 1_000_000_000,
       gas: 25_000_000,
       chainId: 1337
-    }
+    },
+    fwx2: {
+      chainId: 6868,
+      accounts: {
+        mnemonic: process.env.MNEMONIC
+      },
+      allowUnlimitedContractSize: true,
+      // gas: 'auto',
+      gas: 6000000,
+      gasPrice: 'auto',
+      loggingEnabled: true,
+      url: 'https://node.forwardx.space/',
+      timeout: 0,
+    },
+    avaxtestnet: {
+      url: 'https://rpc.ankr.com/avalanche_fuji',
+      chainId: 43113,
+      gas: 5000000,
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+    },
+    avaxmainnet: {
+      url: 'https://multi-green-county.avalanche-mainnet.discover.quiknode.pro/e80aa461aa4df53de93805e33b2ae42b995cb172/ext/bc/C/rpc/',
+      chainId: 43114,
+      gas: 5000000,
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+    },
   },
   contractSizer: {
     alphaSort: true,

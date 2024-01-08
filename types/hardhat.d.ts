@@ -57,6 +57,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Lock__factory>;
     getContractFactory(
+      name: "ERC20Modify",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20Modify__factory>;
+    getContractFactory(
+      name: "Spawn",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Spawn__factory>;
+    getContractFactory(
       name: "AssetGatewayTemplate",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.AssetGatewayTemplate__factory>;
@@ -116,6 +124,16 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Lock>;
+    getContractAt(
+      name: "ERC20Modify",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20Modify>;
+    getContractAt(
+      name: "Spawn",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Spawn>;
     getContractAt(
       name: "AssetGatewayTemplate",
       address: string,

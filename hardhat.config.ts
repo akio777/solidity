@@ -21,7 +21,7 @@ task('accounts', 'Prints the list of accounts', async (args, hre) => {
 });
 
 const optimizedForDeployment = (runs = 1000) => ({
-  version: '0.8.15',
+  version: '0.8.22',
   settings: {
     optimizer: {
       enabled: true,
@@ -36,7 +36,8 @@ const optimizedForDeployment = (runs = 1000) => ({
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [
-      { version: '0.8.15' }
+      { version: '0.8.15' },
+      { version: '0.8.22' }
     ],
     settings: {
       optimizer: {
@@ -45,7 +46,8 @@ const config: HardhatUserConfig = {
       },
     },
     overrides: {
-      'contracts/src/template/AssetGatewayTemplate.sol': optimizedForDeployment(),
+      'contracts/src/spawn/Spawn.sol': optimizedForDeployment(),
+      'contracts/src/spawn/ERC20.sol': optimizedForDeployment(),
     }
   },
   networks: {

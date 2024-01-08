@@ -21,6 +21,7 @@ describe('Testing ERC20Mintable', () => {
     let defaultAmount: number
     let tx: ContractTransaction
     let res: ContractReceipt
+    let tempToken: string
     const defaultMintFee: BigNumber = parseEther(1)
 
     before(async () => {
@@ -47,16 +48,16 @@ describe('Testing ERC20Mintable', () => {
                 { value: defaultMintFee }
             )
             res = await tx.wait(1)
+            tempToken = res.events![res.events?.length! - 1].args![1]
+            console.log('tokenAddress : ', tempToken)
             const after = await getBalance(signers[1].address)
             expect(before).to.be.gt(after)
         })
-        it('totalMint and mintedToken should update and exists', async () => {
+        it('totalMint and mintedToken should update and exists, MUST valid', async () => {
             const currentTotalMint = await spawn.totalMint()
-            console.log(`currentTotalMint : `, currentTotalMint)
             const currentMintedToken = await iSpawn.mintedToken(currentTotalMint)
-            console.log(`currentMintedToken : ${currentMintedToken}`)
-        console.log("DEPLOYER : ", await getBalance(deployer.address))
-
+            expect(currentMintedToken).to.be.gt(BigNumber.from(1))
+            expect(currentMintedToken).to.eq(tempToken)
         })
     })
 

@@ -15,6 +15,7 @@ contract Spawn is Ownable {
 
     event SpawnToken(
         address indexed mintter,
+        address tokenAddress,
         string name,
         string symbol,
         uint256 totalSupply,
@@ -64,6 +65,13 @@ contract Spawn is Ownable {
 
         totalMint += 1;
         mintedToken[totalMint] = address(newERC20ModifyToken);
-        emit SpawnToken(msg.sender, name, symbol, totalSupply, decimal);
+        emit SpawnToken(
+            msg.sender,
+            address(newERC20ModifyToken),
+            name,
+            symbol,
+            totalSupply,
+            decimal
+        );
     }
 }

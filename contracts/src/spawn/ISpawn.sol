@@ -4,6 +4,21 @@ pragma solidity 0.8.22;
 import "./Spawn.sol";
 
 interface ISpawn {
+    event SpawnToken(
+        address indexed mintter,
+        address tokenAddress,
+        string name,
+        string symbol,
+        uint256 totalSupply,
+        uint8 decimal
+    );
+    event SetVault(address indexed setter, address oldValue, address newValue);
+    event SetMintFee(
+        address indexed setter,
+        uint256 oldValue,
+        uint256 newValue
+    );
+
     function spawnToken(
         string memory name,
         string memory symbol,

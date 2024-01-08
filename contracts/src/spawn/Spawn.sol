@@ -11,7 +11,7 @@ contract Spawn is Ownable {
     uint256 public mintFee;
 
     uint256 public totalMint;
-    mapping(uint256 => address) mintedToken;
+    mapping(uint256 => address) public mintedToken;
 
     event SpawnToken(
         address indexed mintter,

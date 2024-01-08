@@ -1,6 +1,10 @@
 import { BigNumber, Bytes, BytesLike } from "ethers";
 import { ethers } from "hardhat";
 
+export async function getBalance(address: string): Promise<BigNumber> {
+    return await ethers.provider.getBalance(address)
+}
+
 export function parseEther(value: string | number, precision = 18) {
     let temp = value.toString().split('.');
     if (temp[1]) {

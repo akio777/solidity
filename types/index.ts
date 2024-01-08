@@ -13,6 +13,7 @@ export type { IERC20Mintable } from "./IERC20Mintable";
 export type { WBNB } from "./WBNB";
 export type { Lock } from "./Lock";
 export type { ERC20Modify } from "./ERC20Modify";
+export type { ISpawn } from "./ISpawn";
 export type { Spawn } from "./Spawn";
 export type { AssetGatewayTemplate } from "./AssetGatewayTemplate";
 
@@ -28,5 +29,6 @@ export { IERC20Mintable__factory } from "./factories/IERC20Mintable__factory";
 export { WBNB__factory } from "./factories/WBNB__factory";
 export { Lock__factory } from "./factories/Lock__factory";
 export { ERC20Modify__factory } from "./factories/ERC20Modify__factory";
+export { ISpawn__factory } from "./factories/ISpawn__factory";
 export { Spawn__factory } from "./factories/Spawn__factory";
 export { AssetGatewayTemplate__factory } from "./factories/AssetGatewayTemplate__factory";

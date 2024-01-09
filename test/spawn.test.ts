@@ -4,7 +4,7 @@ import { getSigners } from "../utils/signers"
 import { getBalance, parseEther } from "../utils/useful"
 import { deploySpawn } from "../scripts/deployments/deploy-spawn"
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
-import { ERC20, IERC20Metadata, IERC20Modify, Spawn } from "../types"
+import { ERC20, IERC20Metadata, Spawn } from "../types"
 import chai, { expect } from 'chai';
 import { ISpawn } from "../types/ISpawn"
 import { ethers } from "hardhat"
@@ -24,19 +24,23 @@ describe('Testing ERC20Mintable', () => {
     let res: ContractReceipt
     let tempToken: string
     const defaultMintFee: BigNumber = parseEther(1)
+    const defaultMultiple: BigNumber = BigNumber.from(33)
 
     before(async () => {
-        spawn = await deploySpawn(defaultMintFee)
+        spawn = await deploySpawn(defaultMintFee,defaultMultiple)
         iSpawn = await ethers.getContractAt("ISpawn", spawn.address);
         signers = await getSigners()
         deployer = signers[0]
         defaultAmount = 1_000_000
     });
 
-    it('mint fee should > 0 and equal default mintFee', async () => {
+    it('mint fee should == 0 if get mintFee by deployer', async () => {
         const mintFee = await spawn.mintFee()
-        expect(mintFee).to.be.eql(defaultMintFee)
-        // console.log("DEPLOYER : ", await getBalance(deployer.address))
+        expect(mintFee).to.be.eq(parseEther(0))
+    })
+    it('mint fee should != 0 if get mintFee by other', async () => {
+        const mintFee = await spawn.connect(signers[1]).mintFee()
+        expect(mintFee).to.be.eq(defaultMintFee)
     })
     it('Deployer should have 21M "SPAWN" TOKEN', async () => {
         const spawnToken: IERC20Metadata = await ethers.getContractAt("IERC20Metadata", await iSpawn.token())
@@ -66,6 +70,11 @@ describe('Testing ERC20Mintable', () => {
             const currentMintedToken = await iSpawn.mintedToken(currentTotalMint)
             expect(currentMintedToken).to.be.gt(BigNumber.from(1))
             expect(currentMintedToken).to.eq(tempToken)
+        })
+        it('if user1 have 100k SPAWN, should get new MintFee', async () => {
+            const spawnToken: IERC20Metadata = await ethers.getContractAt("IERC20Metadata", await iSpawn.token())
+            await spawnToken.connect(deployer).transfer(signers[1].address, parseEther(100_000))
+            const newMintFee = await iSpawn.connect(signers[1]).mintFee();
         })
     })
 

@@ -30,5 +30,7 @@ interface ISpawn {
 
     function mintFee() external view returns (uint256);
 
+    function multipleDiscount() external view returns (uint256);
+
     function token() external view returns (address);
 }

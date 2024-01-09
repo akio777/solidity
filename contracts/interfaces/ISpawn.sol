@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity 0.8.22;
 
-import "./Spawn.sol";
-
 interface ISpawn {
     event SpawnToken(
         address indexed mintter,

@@ -33,6 +33,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
+      name: "ISpawn",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ISpawn__factory>;
+    getContractFactory(
       name: "IWrapERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IWrapERC20__factory>;
@@ -60,10 +64,6 @@ declare module "hardhat/types/runtime" {
       name: "ERC20Modify",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC20Modify__factory>;
-    getContractFactory(
-      name: "ISpawn",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ISpawn__factory>;
     getContractFactory(
       name: "Spawn",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -99,6 +99,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
     getContractAt(
+      name: "ISpawn",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ISpawn>;
+    getContractAt(
       name: "IWrapERC20",
       address: string,
       signer?: ethers.Signer
@@ -133,11 +138,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.ERC20Modify>;
-    getContractAt(
-      name: "ISpawn",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ISpawn>;
     getContractAt(
       name: "Spawn",
       address: string,

@@ -25,4 +25,8 @@ interface ISpawn {
     ) external payable;
 
     function mintedToken(uint256 index) external view returns (address);
+
+    function totalMint() external view returns (uint256);
+
+    function mintFee() external view returns (uint256);
 }

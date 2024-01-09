@@ -11,4 +11,5 @@ typechain-types
 cache
 artifacts
 /types
+types/
 

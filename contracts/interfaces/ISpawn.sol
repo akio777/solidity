@@ -29,4 +29,6 @@ interface ISpawn {
     function totalMint() external view returns (uint256);
 
     function mintFee() external view returns (uint256);
+
+    function token() external view returns (address);
 }

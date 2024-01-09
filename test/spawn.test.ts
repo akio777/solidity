@@ -4,11 +4,12 @@ import { getSigners } from "../utils/signers"
 import { getBalance, parseEther } from "../utils/useful"
 import { deploySpawn } from "../scripts/deployments/deploy-spawn"
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
-import { Spawn } from "../types"
+import { ERC20, IERC20Metadata, IERC20Modify, Spawn } from "../types"
 import chai, { expect } from 'chai';
 import { ISpawn } from "../types/ISpawn"
 import { ethers } from "hardhat"
 import { solidity } from 'ethereum-waffle';
+import { IERC20 } from "../typechain-types"
 
 chai.use(solidity);
 
@@ -35,8 +36,16 @@ describe('Testing ERC20Mintable', () => {
     it('mint fee should > 0 and equal default mintFee', async () => {
         const mintFee = await spawn.mintFee()
         expect(mintFee).to.be.eql(defaultMintFee)
-        console.log("DEPLOYER : ", await getBalance(deployer.address))
+        // console.log("DEPLOYER : ", await getBalance(deployer.address))
     })
+    it('Deployer should have 21M "SPAWN" TOKEN', async () => {
+        const spawnToken: IERC20Metadata = await ethers.getContractAt("IERC20Metadata", await iSpawn.token())
+        const totalSupply = await spawnToken.totalSupply()
+        expect(totalSupply).to.be.eql(BigNumber.from("21000000000000000000000000"))
+        const deployerSpawnBalance = await spawnToken.balanceOf(deployer.address)
+        expect(deployerSpawnBalance).to.be.eql(BigNumber.from("21000000000000000000000000"))
+    })
+
     context('situation : user1 mint token 1 M', async () => {
         it('user1 balance should decrease', async () => {
             const before = await getBalance(signers[1].address)
@@ -49,7 +58,6 @@ describe('Testing ERC20Mintable', () => {
             )
             res = await tx.wait(1)
             tempToken = res.events![res.events?.length! - 1].args![1]
-            console.log('tokenAddress : ', tempToken)
             const after = await getBalance(signers[1].address)
             expect(before).to.be.gt(after)
         })
@@ -60,5 +68,6 @@ describe('Testing ERC20Mintable', () => {
             expect(currentMintedToken).to.eq(tempToken)
         })
     })
+
 
 })

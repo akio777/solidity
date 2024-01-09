@@ -41,6 +41,5 @@ describe('Testing ERC20Mintable', () => {
         let tx = token.connect(signers[1]).mint(signers[1].address, mintAmount)
         await expect(tx).to.be.revertedWith("Ownable: caller is not the owner")
     })
-
 })
 

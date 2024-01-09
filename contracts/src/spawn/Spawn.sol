@@ -9,6 +9,7 @@ import "./ERC20Modify.sol";
 contract Spawn is Ownable {
     address private vault;
     uint256 public mintFee;
+    address public token;
 
     uint256 public totalMint;
     mapping(uint256 => address) public mintedToken;
@@ -31,6 +32,14 @@ contract Spawn is Ownable {
     constructor(uint256 _mintFee) {
         vault = msg.sender;
         mintFee = _mintFee;
+        token = (
+            _spawnToken(
+                "SPAWN",
+                "SPAWN",
+                uint256(21000000000000000000000000),
+                18
+            )
+        );
     }
 
     function setVault(address _vault) external onlyOwner {
@@ -54,7 +63,15 @@ contract Spawn is Ownable {
         require(msg.value == mintFee, "Spawn/not-enough-fee");
         (bool isSuccess, ) = vault.call{value: msg.value}("");
         require(isSuccess, "Spawn/collecting-fee-fail");
+        _spawnToken(name, symbol, totalSupply, decimal);
+    }
 
+    function _spawnToken(
+        string memory name,
+        string memory symbol,
+        uint256 totalSupply,
+        uint8 decimal
+    ) internal returns (address) {
         ERC20Modify newERC20ModifyToken = new ERC20Modify(
             name,
             symbol,
@@ -62,7 +79,6 @@ contract Spawn is Ownable {
             decimal,
             msg.sender
         );
-
         totalMint += 1;
         mintedToken[totalMint] = address(newERC20ModifyToken);
         emit SpawnToken(
@@ -73,5 +89,6 @@ contract Spawn is Ownable {
             totalSupply,
             decimal
         );
+        return address(newERC20ModifyToken);
     }
 }
